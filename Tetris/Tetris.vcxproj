@@ -40,10 +40,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\batez\Documents\Visual Studio 2010\lib\SDL2_image-2.0.0\include;C:\Users\batez\Documents\Visual Studio 2010\lib\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\SDL2_image-2.0.0\include;$(ProjectDir)\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\batez\Documents\Visual Studio 2010\lib\SDL2_image-2.0.0\lib\x86;C:\Users\batez\Documents\Visual Studio 2010\lib\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)\SDL2_image-2.0.0\lib\x86;$(ProjectDir)\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

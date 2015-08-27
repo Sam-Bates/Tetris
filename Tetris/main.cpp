@@ -1,3 +1,281 @@
+char mPieces [7 /*kind */ ][4 /* rotation */ ][5 /* horizontal blocks */ ][5 /* vertical blocks */ ] =
+{
+// Square
+  {
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+    }
+   },
+ 
+// I
+  {
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 1},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0}, 
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {1, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    }
+   }
+  ,
+// L
+  {
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 1, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    }
+   },
+// L mirrored
+  {
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 1, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0}
+    }
+   },
+// N
+  {
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 1, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 1, 1, 0, 0},
+    {0, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+ 
+ 
+ 
+   {
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    }
+   },
+// N mirrored
+  {
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 1, 0, 0, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    }
+   },
+// T
+  {
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 1, 1, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 1, 1, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0}
+    },
+   {
+    {0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}
+    }
+   }
+};
+int mPiecesInitialPosition  [7 /*kind */ ][4 /* r2otation */ ][2 /* position */] =
+{
+/* Square */
+  {
+    {-2, -3}, 
+    {-2, -3},
+    {-2, -3},
+    {-2, -3}
+   },
+/* I */
+  {
+    {-2, -2},
+    {-2, -3},
+    {-2, -2},
+    {-2, -3}
+   },
+/* L */
+  {
+    {-2, -3},
+    {-2, -3},
+    {-2, -3},
+    {-2, -2}
+   },
+/* L mirrored */
+  {
+    {-2, -3},
+    {-2, -2},
+    {-2, -3},
+    {-2, -3}
+   },
+/* N */
+  {
+    {-2, -3},
+    {-2, -3},
+    {-2, -3},
+    {-2, -2}
+   },
+/* N mirrored */
+  {
+    {-2, -3},
+    {-2, -3},
+    {-2, -3},
+    {-2, -2}
+   },
+/* T */
+  {
+    {-2, -3},
+    {-2, -3},
+    {-2, -3},
+    {-2, -2}
+   },
+};
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
@@ -16,6 +294,15 @@ bool loadMedia();
 //Frees media and shuts down SDL
 void close();
 
+const int BOARD_WIDTH = 12; //in blocks
+const int BOARD_HEIGHT = 22; //in blocks
+const int POS_FREE = 0;
+const int POS_TAKEN = 1;
+const int BORDER = 2;
+
+
+int board[BOARD_WIDTH][BOARD_HEIGHT];
+
 //Loads individual image as texture
 SDL_Texture* loadTexture( std::string path );
 
@@ -26,7 +313,11 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
 //Current displayed texture
-SDL_Texture* gTexture = NULL;
+SDL_Texture* blockTexture = NULL;
+SDL_Texture* borderTexture = NULL;
+
+
+
 
 bool init()
 {
@@ -48,7 +339,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		gWindow = SDL_CreateWindow( "Tetris", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -88,8 +379,9 @@ bool loadMedia()
 	bool success = true;
 
 	//Load PNG texture
-	gTexture = loadTexture( "texture.png" );
-	if( gTexture == NULL )
+	blockTexture = loadTexture( "texture.png" );
+	borderTexture = loadTexture( "borderTexture.png" );
+	if( blockTexture == NULL || borderTexture == NULL )
 	{
 		printf( "Failed to load texture image!\n" );
 		success = false;
@@ -101,8 +393,8 @@ bool loadMedia()
 void close()
 {
 	//Free loaded image
-	SDL_DestroyTexture( gTexture );
-	gTexture = NULL;
+	SDL_DestroyTexture( blockTexture );
+	blockTexture = NULL;
 
 	//Destroy window	
 	SDL_DestroyRenderer( gRenderer );
@@ -142,8 +434,49 @@ SDL_Texture* loadTexture( std::string path )
 	return newTexture;
 }
 
+void drawBoard()
+{
+	int count = 0;
+	for( int i = 0; i < BOARD_WIDTH; i++)
+	{
+		for( int j = 0; j < BOARD_HEIGHT; j++)
+		{
+			if( board[i][j] == POS_TAKEN )
+			{
+				
+				SDL_Rect a = {i * 11 /*X*/, j * 11 /*Y*/, 10/*size*/,10/*size*/};
+				SDL_RenderCopy( gRenderer, blockTexture, NULL, &a );
+			}
+			else if( board[i][j] == BORDER )
+			{
+				SDL_Rect a = {i * 11 /*X*/, j * 11 /*Y*/, 10/*size*/,10/*size*/};
+				SDL_RenderCopy( gRenderer, borderTexture, NULL, &a );
+			}
+		}
+	}
+}
+
+void initBoard()
+{
+    for (int x = 0; x < BOARD_WIDTH; x++)
+	{
+        for (int y = 0; y < BOARD_HEIGHT; y++)
+		{
+			if( x == 0 || x == 11 || y == 21 || y == 0 )
+			{
+				board[x][y] = BORDER;
+			}
+			else
+			{
+				board[x][y] = POS_FREE;
+			}
+		}
+	}
+}
+
 int main( int argc, char* args[] )
 {
+	initBoard();
 	int y = 0;
 	//Start up SDL and create window
 	if( !init() )
@@ -172,7 +505,7 @@ int main( int argc, char* args[] )
 				while( SDL_PollEvent( &e ) != 0 )
 				{
 					/*SDL_RenderClear( gRenderer );
-					SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );*/
+					SDL_RenderCopy( gRenderer, blockTexture, NULL, NULL );*/
 					//User requests quit
 					if( e.type == SDL_QUIT )
 					{
@@ -182,11 +515,12 @@ int main( int argc, char* args[] )
 
 				//Clear screen
 				SDL_RenderClear( gRenderer );
-
+				//board[0][10] = POS_TAKEN;
+				drawBoard();
+				SDL_Delay( 2000 );
 				//Render texture to screen
-				const SDL_Rect texture_rect = {100, y++, 10, 10};
-				y %= 720;
-				SDL_RenderCopy( gRenderer, gTexture, NULL, &texture_rect );
+				//const SDL_Rect texture_rect = {100, 10, 10, 10};
+				//SDL_RenderCopy( gRenderer, blockTexture, NULL, &texture_rect );
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
