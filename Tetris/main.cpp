@@ -1,4 +1,4 @@
-char mPieces [7 /*kind */ ][4 /* rotation */ ][5 /* horizontal blocks */ ][5 /* vertical blocks */ ] =
+int pieces [7 /*kind */ ][4 /* rotation */ ][5][5] =
 {
 // Square
   {
@@ -223,7 +223,7 @@ char mPieces [7 /*kind */ ][4 /* rotation */ ][5 /* horizontal blocks */ ][5 /* 
     }
    }
 };
-int mPiecesInitialPosition  [7 /*kind */ ][4 /* r2otation */ ][2 /* position */] =
+int initialPlace  [7 /*kind */ ][4 /* r2otation */ ][2 /* position */] =
 {
 /* Square */
   {
@@ -278,12 +278,16 @@ int mPiecesInitialPosition  [7 /*kind */ ][4 /* r2otation */ ][2 /* position */]
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <cstdlib>
 #include <stdio.h>
 #include <string>
+#include <iostream>
+#include <time.h>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
+
 
 //Starts up SDL and creates window
 bool init();
@@ -299,8 +303,13 @@ const int BOARD_HEIGHT = 22; //in blocks
 const int POS_FREE = 0;
 const int POS_TAKEN = 1;
 const int BORDER = 2;
+const int PIECE_BLOCKS = 5; // in blocks
 
-
+int currentPiece = NULL;
+int nextPiece= NULL;
+int currentY= NULL;
+int currentX = NULL;
+int currentRotation = NULL;
 int board[BOARD_WIDTH][BOARD_HEIGHT];
 
 //Loads individual image as texture
@@ -327,7 +336,7 @@ bool init()
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
-		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+		std::cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << std::endl;
 		success = false;
 	}
 	else
@@ -335,14 +344,14 @@ bool init()
 		//Set texture filtering to linear
 		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
 		{
-			printf( "Warning: Linear texture filtering not enabled!" );
+			std::cout << "Warning: Linear texture filtering not enabled!" << std::endl;
 		}
 
 		//Create window
 		gWindow = SDL_CreateWindow( "Tetris", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == NULL )
 		{
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+			std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;
 			success = false;
 		}
 		else
@@ -351,7 +360,7 @@ bool init()
 			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
 			if( gRenderer == NULL )
 			{
-				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+				std::cout << "Renderer could not be created! SDL Error: " << SDL_GetError() << std::endl;
 				success = false;
 			}
 			else
@@ -363,13 +372,12 @@ bool init()
 				int imgFlags = IMG_INIT_PNG;
 				if( !( IMG_Init( imgFlags ) & imgFlags ) )
 				{
-					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+					std::cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << std::endl;
 					success = false;
 				}
 			}
 		}
 	}
-
 	return success;
 }
 
@@ -383,7 +391,7 @@ bool loadMedia()
 	borderTexture = loadTexture( "borderTexture.png" );
 	if( blockTexture == NULL || borderTexture == NULL )
 	{
-		printf( "Failed to load texture image!\n" );
+		std::cout <<  "Failed to load texture image!" << std::endl;
 		success = false;
 	}
 
@@ -416,7 +424,7 @@ SDL_Texture* loadTexture( std::string path )
 	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 	if( loadedSurface == NULL )
 	{
-		printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
+		std::cout <<  "Unable to load image" <<  path.c_str() << "! SDL_image Error: " << IMG_GetError() << std::endl;
 	}
 	else
 	{
@@ -424,7 +432,7 @@ SDL_Texture* loadTexture( std::string path )
         newTexture = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
 		if( newTexture == NULL )
 		{
-			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
+			std::cout << "Unable to create texture from " << path.c_str() << "! SDL Error: " << SDL_GetError() << std::endl;
 		}
 
 		//Get rid of old loaded surface
@@ -433,6 +441,11 @@ SDL_Texture* loadTexture( std::string path )
 
 	return newTexture;
 }
+//void creatNewPiece()
+//{
+//	int kind
+//	piece[kind][rotation][horizontal][vertical]
+//}
 
 void drawBoard()
 {
@@ -443,13 +456,12 @@ void drawBoard()
 		{
 			if( board[i][j] == POS_TAKEN )
 			{
-				
 				SDL_Rect a = {i * 11 /*X*/, j * 11 /*Y*/, 10/*size*/,10/*size*/};
 				SDL_RenderCopy( gRenderer, blockTexture, NULL, &a );
 			}
 			else if( board[i][j] == BORDER )
 			{
-				SDL_Rect a = {i * 11 /*X*/, j * 11 /*Y*/, 10/*size*/,10/*size*/};
+				SDL_Rect a = {i * 11 /*X*/, j * 11 /*Y*/, 11/*size*/,11/*size*/};
 				SDL_RenderCopy( gRenderer, borderTexture, NULL, &a );
 			}
 		}
@@ -462,7 +474,7 @@ void initBoard()
 	{
         for (int y = 0; y < BOARD_HEIGHT; y++)
 		{
-			if( x == 0 || x == 11 || y == 21 || y == 0 )
+			if( x == 0 || x == (BOARD_WIDTH -1) || y == (BOARD_HEIGHT -1) || y == 0 )
 			{
 				board[x][y] = BORDER;
 			}
@@ -474,21 +486,79 @@ void initBoard()
 	}
 }
 
+void initGame()
+{
+	currentPiece = rand()%7;
+	nextPiece = rand()%7;
+	currentRotation = rand()%4;
+	//figure out initial postion stuff
+	currentX = (BOARD_WIDTH / 2); // in the middle of the board
+	currentY = 3; // number of blocks down
+}
+
+bool collision()
+{
+	//create temp piece arrray that holds the layout of the current piece and rotation
+	//check if the temp piece is 1 && if the board location is 0, then draw a block there
+
+	
+    // Store each block of the piece into the board
+    for (int i = 0; i < PIECE_BLOCKS; i++)
+    {
+        for (int j = 0; j < PIECE_BLOCKS; j++)
+        {   
+			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN && ((board[i + currentX][j + currentY] == POS_TAKEN) || (board[i + currentX][j + currentY] == BORDER)) )
+			{
+				return true;
+			}
+        }
+    }
+	return false;
+}
+
+void drawPiece()
+{
+	for (int i = 0; i < PIECE_BLOCKS; i++)
+    {
+        for (int j = 0; j < PIECE_BLOCKS; j++)
+        {   
+			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN )
+			{
+				SDL_Rect a = {(i + currentX) * 11 /*X*/, (j + currentY) * 11 /*Y*/, 10/*size*/,10/*size*/};
+				SDL_RenderCopy( gRenderer, blockTexture, NULL, &a );
+			}
+        }
+    }
+}
+void movePiece()
+{
+	currentY++;
+	if( collision() )
+	{
+		currentY--;
+	}
+}
+
 int main( int argc, char* args[] )
 {
+	//make a collided piece save into the board
+	//piece rotations
+	//score
+	//game end
+	srand(time(NULL));
+	initGame();
 	initBoard();
-	int y = 0;
 	//Start up SDL and create window
 	if( !init() )
 	{
-		printf( "Failed to initialize!\n" );
+		std::cout << "Failed to initialize!" << std::endl;
 	}
 	else
 	{
 		//Load media
 		if( !loadMedia() )
 		{
-			printf( "Failed to load media!\n" );
+			std::cout << "Failed to load media!" << std::endl;
 		}
 		else
 		{	
@@ -501,30 +571,59 @@ int main( int argc, char* args[] )
 			//While application is running
 			while( !quit )
 			{
+				
 				//Handle events on queue
 				while( SDL_PollEvent( &e ) != 0 )
 				{
-					/*SDL_RenderClear( gRenderer );
-					SDL_RenderCopy( gRenderer, blockTexture, NULL, NULL );*/
+
 					//User requests quit
 					if( e.type == SDL_QUIT )
 					{
 						quit = true;
 					}
+					else if( e.type == SDL_KEYDOWN )
+					{
+					
+						switch( e.key.keysym.sym )
+						{
+                        case SDLK_LEFT:
+							currentX--;
+							if( collision() )
+							{
+								currentX++;
+							}
+							break;
+
+                        case SDLK_RIGHT:
+							currentX++;
+							if( collision() )
+							{
+								currentX--;
+							}
+							break;
+						}
+					}
 				}
 
 				//Clear screen
 				SDL_RenderClear( gRenderer );
-				//board[0][10] = POS_TAKEN;
 				drawBoard();
-				SDL_Delay( 2000 );
-				//Render texture to screen
-				//const SDL_Rect texture_rect = {100, 10, 10, 10};
-				//SDL_RenderCopy( gRenderer, blockTexture, NULL, &texture_rect );
+				drawPiece();
+				movePiece();
+				//collision();
+
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
-				SDL_Delay(10);
+				SDL_Delay(50);
+
+				//when moving piece, set old piece spots to zero before drawing next piece
+
+				//MovePiece() Check if valid
+				//drawPiece()
+				//check for next move collision
+				//check for completed lines
+				//create new piece if needed
 			}
 		}
 	}
