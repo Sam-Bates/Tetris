@@ -1,23 +1,23 @@
-﻿Build started 8/30/2015 8:43:46 PM.
-     1>Project "C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Tetris\Tetris.vcxproj" on node 2 (build target(s)).
+﻿Build started 31/08/2015 4:46:33 p.m..
+     1>Project "H:\My Documents\GitHub\Tetris\Tetris\Tetris.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Tetris.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>c:\users\batez\documents\visual studio 2010\projects\tetris\tetris\main.cpp(544): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>h:\my documents\github\tetris\tetris\main.cpp(549): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Debug\Tetris.exe" /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Tetris.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Debug\Tetris.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Debug\Tetris.lib" /MACHINE:X86 Debug\main.obj
-         LINK : C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Debug\Tetris.exe not found or not built by the last incremental link; performing full link
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\My Documents\GitHub\Tetris\Debug\Tetris.exe" /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Tetris.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"H:\My Documents\GitHub\Tetris\Debug\Tetris.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\My Documents\GitHub\Tetris\Debug\Tetris.lib" /MACHINE:X86 Debug\main.obj
+         LINK : H:\My Documents\GitHub\Tetris\Debug\Tetris.exe not found or not built by the last incremental link; performing full link
      1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
-         Tetris.vcxproj -> C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Debug\Tetris.exe
+         Tetris.vcxproj -> H:\My Documents\GitHub\Tetris\Debug\Tetris.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Debug\Tetris.exe;#1" /manifest Debug\Tetris.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"H:\My Documents\GitHub\Tetris\Debug\Tetris.exe;#1" /manifest Debug\Tetris.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Debug\Tetris.unsuccessfulbuild".
          Touching "Debug\Tetris.lastbuildstate".
-     1>Done Building Project "C:\Users\batez\Documents\Visual Studio 2010\Projects\Tetris\Tetris\Tetris.vcxproj" (build target(s)).
+     1>Done Building Project "H:\My Documents\GitHub\Tetris\Tetris\Tetris.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.76
+Time Elapsed 00:00:03.68
