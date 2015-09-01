@@ -11,7 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="board.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="Piece.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pieces.h" />
+    <ClInclude Include="board.h" />
+    <ClInclude Include="graphics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A320C017-B0EC-4977-80E9-31EDCA07A24B}</ProjectGuid>
