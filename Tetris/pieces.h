@@ -2,7 +2,7 @@
 #define blocks_h_
 
 void drawPiece();
-void movePiece(int,int);
+bool movePiece(int,int);
 
 const int PIECE_BLOCKS = 5; // in blocks
 

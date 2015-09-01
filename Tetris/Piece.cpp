@@ -45,7 +45,7 @@ void drawPiece( )
 }
 
 //This method moves the piece and calls the collision method, if collision is true, revert the movement
-void movePiece(int x, int y)
+bool movePiece(int x, int y)
 {
 	currentY += y;
 	currentX += x;
@@ -53,5 +53,10 @@ void movePiece(int x, int y)
 	{
 		currentY -= y;
 		currentX -= x;
+		if( y != 0 )
+		{
+			return true;
+		}
 	}
+	return false;
 }

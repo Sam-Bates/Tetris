@@ -2,6 +2,7 @@
 #include <SDL_image.h>
 #include "graphics.h"
 #include "board.h"
+#include "pieces.h"
 
 int board[BOARD_WIDTH][BOARD_HEIGHT];
 
@@ -46,5 +47,19 @@ void drawBoard()
 			}
 		}
 	}
+}
+
+void savePieceToBoard()
+{
+	for (int i = 0; i < PIECE_BLOCKS; i++)
+    {
+        for (int j = 0; j < PIECE_BLOCKS; j++)
+        {   
+			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN )
+			{
+				board[i + currentX][j + currentY] = POS_TAKEN;
+			}
+        }
+    }
 }
 

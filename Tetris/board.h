@@ -12,5 +12,6 @@ extern int board[BOARD_WIDTH][BOARD_HEIGHT];
 
 void drawBoard();
 void initBoard();
+void savePieceToBoard();
 
 #endif

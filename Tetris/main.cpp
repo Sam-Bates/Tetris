@@ -77,7 +77,10 @@ int main( int argc, char* args[] )
 				SDL_RenderClear( gRenderer );
 				drawBoard();
 				drawPiece();
-				movePiece(0, 1);
+				if( movePiece(0, 1) )
+				{
+					savePieceToBoard();
+				}
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
