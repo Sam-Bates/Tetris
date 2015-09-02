@@ -10,9 +10,10 @@ void initGame()
 	currentPiece = rand()%7;
 	nextPiece = rand()%7;
 	currentRotation = rand()%4;
+	nextRotation = rand()%4;
 	//figure out initial postion stuff
 	currentX = (BOARD_WIDTH / 2); // in the middle of the board
-	currentY = 3; // number of blocks down
+	currentY = -1; // number of blocks down
 }
 
 int main( int argc, char* args[] )
@@ -70,25 +71,34 @@ int main( int argc, char* args[] )
 							//make enum at some point
 							movePiece(1, 0);
 							break;
+						case SDLK_UP:
+							//make enum at some point
+							rotate(1);
+							break;
+						case SDLK_DOWN:
+							//make enum at some point
+							rotate(0);
+							break;
 						}
 					}
 				}
 				//Clear screen
 				SDL_RenderClear( gRenderer );
-				drawBoard();
+				
 				drawPiece();
 				if( movePiece(0, 1) )
 				{
 					savePieceToBoard();
+					createNewPiece();
 				}
+				drawBoard();
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
-				SDL_Delay(50);
+				SDL_Delay(300);
 			}
 		}
 	}
 	close();
-
 	return 0;
 }

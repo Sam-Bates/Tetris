@@ -12,6 +12,7 @@ SDL_Renderer* gRenderer;
 //The two textures
 SDL_Texture* blockTexture;
 SDL_Texture* borderTexture;
+SDL_Texture* pieceTexture;
 
 bool init()
 {
@@ -74,7 +75,8 @@ bool loadMedia()
 	//Load PNG texture
 	blockTexture = loadTexture( "texture.png" );
 	borderTexture = loadTexture( "borderTexture.png" );
-	if( blockTexture == NULL || borderTexture == NULL )
+	pieceTexture = loadTexture( "pieceTexture.png" );
+	if( blockTexture == NULL || borderTexture == NULL || pieceTexture == NULL )
 	{
 		std::cout <<  "Failed to load texture image!" << std::endl;
 		success = false;

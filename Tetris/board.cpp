@@ -13,7 +13,7 @@ void initBoard()
 	{
         for (int y = 0; y < BOARD_HEIGHT; y++)
 		{
-			if( x == 0 || x == (BOARD_WIDTH -1) || y == (BOARD_HEIGHT -1) || y == 0 )
+			if( x == 0 || x == (BOARD_WIDTH -1) || y == (BOARD_HEIGHT -1) )
 			{
 				board[x][y] = BORDER;
 			}

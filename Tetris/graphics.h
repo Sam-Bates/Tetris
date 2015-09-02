@@ -13,6 +13,7 @@ extern SDL_Renderer* gRenderer;
 //The two textures
 extern SDL_Texture* blockTexture;
 extern SDL_Texture* borderTexture;
+extern SDL_Texture* pieceTexture;
 //Screen dimension constants
 
 //Loads individual image as texture

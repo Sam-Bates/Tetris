@@ -1,8 +1,10 @@
 #ifndef blocks_h_
 #define blocks_h_
 
+void createNewPiece();
 void drawPiece();
 bool movePiece(int,int);
+void rotate(int);
 
 const int PIECE_BLOCKS = 5; // in blocks
 
@@ -11,6 +13,7 @@ extern int nextPiece;
 extern int currentY;
 extern int currentX;
 extern int currentRotation;
+extern int nextRotation;
 
 const int pieces [7 /*kind */ ][4 /* rotation */ ][5][5] =
 {
