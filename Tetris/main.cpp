@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <iostream>
 #include <time.h>
+#include <sstream>
 #include "pieces.h"
 #include "graphics.h"
 #include "board.h"
@@ -25,6 +26,8 @@ int main( int argc, char* args[] )
 	srand(time(NULL));
 	initGame();
 	initBoard();
+	Uint32 startTime = SDL_GetTicks();
+	bool check = false; //***Delete this at some point***
 	//Start up SDL and create window
 	if( !init() )
 	{
@@ -82,20 +85,31 @@ int main( int argc, char* args[] )
 						}
 					}
 				}
+				drawBoard();
+				drawPiece();
+				
+				
+				SDL_RenderPresent( gRenderer );
+				if( check )
+				{
+					checkLines();
+					check = false;
+				}
+				
+				if( SDL_GetTicks() > startTime + 200 )
+				{
+					startTime = SDL_GetTicks();
+					if( movePiece(0, 1) )
+					{
+						savePieceToBoard();
+						createNewPiece();
+						//checkLines();
+						check = true;
+					}
+				}
+				
 				//Clear screen
 				SDL_RenderClear( gRenderer );
-				
-				drawPiece();
-				if( movePiece(0, 1) )
-				{
-					savePieceToBoard();
-					createNewPiece();
-				}
-				drawBoard();
-
-				//Update screen
-				SDL_RenderPresent( gRenderer );
-				SDL_Delay(300);
 			}
 		}
 	}

@@ -62,4 +62,32 @@ void savePieceToBoard()
         }
     }
 }
+void DeleteLine(int line)
+{
+	for (int j = line; j > 0; j--)
+    {
+        for (int i = 0; i < BOARD_WIDTH; i++)
+        {
+			if( board[i][j] != BORDER )
+			{
+				board[i][j] = board[i][j-1];
+			}
+        }
+    }  
+}
+void checkLines()
+{
+	for (int j = 0; j < BOARD_HEIGHT; j++)
+    {
+        int i = 1;
+		
+        while (i < BOARD_WIDTH)
+        {
+            if( board[i][j] == 0) break;
+			i++;
+        }
+ 
+        if (i == BOARD_WIDTH - 1) DeleteLine(j);
+    }
+}
 
