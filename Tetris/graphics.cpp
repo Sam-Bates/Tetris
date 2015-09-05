@@ -2,6 +2,8 @@
 #include <SDL_image.h>
 #include <iostream>
 #include "graphics.h"
+#include "board.h"
+#include "pieces.h"
 
 //The window we'll be rendering to
 SDL_Window* gWindow;
@@ -127,4 +129,8 @@ void close()
 	//Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
+}
+void drawRect( int i, int j, int pieceType )
+{
+	//do this later
 }

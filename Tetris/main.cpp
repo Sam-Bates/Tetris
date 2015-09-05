@@ -82,6 +82,12 @@ int main( int argc, char* args[] )
 							//make enum at some point
 							rotate(0);
 							break;
+						case SDLK_SPACE:
+							slam();
+							break;
+						case SDLK_LSHIFT:
+							swapPiece();
+							break;
 						}
 					}
 				}
@@ -96,14 +102,13 @@ int main( int argc, char* args[] )
 					check = false;
 				}
 				
-				if( SDL_GetTicks() > startTime + 200 )
+				if( SDL_GetTicks() > startTime + MOVE_DELAY )
 				{
 					startTime = SDL_GetTicks();
 					if( movePiece(0, 1) )
 					{
 						savePieceToBoard();
 						createNewPiece();
-						//checkLines();
 						check = true;
 					}
 				}

@@ -5,15 +5,26 @@ void createNewPiece();
 void drawPiece();
 bool movePiece(int,int);
 void rotate(int);
+void slam();
+void swapPiece();
 
 const int PIECE_BLOCKS = 5; // in blocks
-
+const int MOVE_DELAY = 500; // the time between each movement
+const int SQUARE_PIECE = 0;
+const int STRAIGHT_PIECE = 1;
+const int L_PIECE = 2;
+const int L_MIRRORED_PIECE = 3;
+const int N_PIECE = 4;
+const int N_MIRRORED_PIECE = 5;
+const int T_PIECE = 6;
+const int T_PIECE_MIRRORED = 7;
 extern int currentPiece; // the current in play piece
 extern int nextPiece;
 extern int currentY;
 extern int currentX;
 extern int currentRotation;
 extern int nextRotation;
+
 
 const int pieces [7 /*kind */ ][4 /* rotation */ ][5][5] =
 {

@@ -38,7 +38,7 @@ void drawPiece( )
         {   
 			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN )
 			{
-				SDL_Rect a = {(i + currentX) * MAGNIFICATION /*X*/, (j + currentY) * MAGNIFICATION /*Y*/, 10/*size*/,10/*size*/};
+				SDL_Rect a = {(i + currentX) * MAGNIFICATION /*X*/, (j + currentY) * MAGNIFICATION /*Y*/, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
 				SDL_RenderCopy( gRenderer, pieceTexture, NULL, &a );
 			}
         }
@@ -49,7 +49,7 @@ void drawPiece( )
         {   
 			if( pieces[nextPiece][nextRotation][i][j] == POS_TAKEN )
 			{
-				SDL_Rect a = {(i + BOARD_WIDTH) * MAGNIFICATION /*X*/, (j) * MAGNIFICATION /*Y*/, 10/*size*/,10/*size*/};
+				SDL_Rect a = {(i + BOARD_WIDTH) * MAGNIFICATION /*X*/, (j) * MAGNIFICATION /*Y*/, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
 				SDL_RenderCopy( gRenderer, pieceTexture, NULL, &a );
 			}
         }
@@ -71,6 +71,16 @@ bool movePiece(int x, int y)
 		}
 	}
 	return false;
+}
+//Slam the piece to the bottom of the current Y value
+void slam()
+{
+	while( !collision() )
+	{
+		currentY++;
+	}
+	currentY--;/*This is here otherwise when a piece is slammed, it will go 1 block too deep i.e. it will land inside the border
+			   rather than on the border*/
 }
 
 void createNewPiece()
@@ -111,5 +121,20 @@ void rotate(int direction)
 		{
 			currentRotation = temp;
 		}
+	}
+}
+void swapPiece()
+{
+	
+	int temp = currentPiece;
+	currentPiece = nextPiece;
+	nextPiece = temp;
+	//This if statement stops a piece from glitcing into the wall when changed
+	if( collision() )
+	{
+		//revert the piece to it's original place if a swap would collide
+		int temp = nextPiece;
+		nextPiece = currentPiece;
+		currentPiece = temp;
 	}
 }

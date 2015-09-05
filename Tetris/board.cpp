@@ -35,14 +35,14 @@ void drawBoard()
 			if( board[i][j] == POS_TAKEN )
 			{
 				//create 2d rectangle to apply texture to, MAGNIFICATION defines the size of the rendered game
-				SDL_Rect a = {i * MAGNIFICATION /*X*/, j * MAGNIFICATION /*Y*/, 10/*size*/,10/*size*/};
+				SDL_Rect a = {i * MAGNIFICATION /*X*/, j * MAGNIFICATION /*Y*/, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
 				//actually tell SDL to render the blockTexture to the screen
 				SDL_RenderCopy( gRenderer, blockTexture, NULL, &a );
 			}
 			else if( board[i][j] == BORDER ) //Same thing as above, expect loading borderTexture instead of the block texture
 			{
 				//The size is 11 so there is no gap between the drawn border blocks
-				SDL_Rect a = {i * MAGNIFICATION /*X*/, j * MAGNIFICATION /*Y*/, 11/*size*/,11/*size*/};
+				SDL_Rect a = {i * MAGNIFICATION /*X*/, j * MAGNIFICATION /*Y*/, MAGNIFICATION + 1/*size*/,MAGNIFICATION + 1/*size*/};
 				SDL_RenderCopy( gRenderer, borderTexture, NULL, &a );
 			}
 		}
@@ -62,32 +62,35 @@ void savePieceToBoard()
         }
     }
 }
+//This method deletes a given line, setting the whole line (except for the borders, to 0)
 void DeleteLine(int line)
 {
-	for (int j = line; j > 0; j--)
+	for (int y = line; y > 0; y--)
     {
-        for (int i = 0; i < BOARD_WIDTH; i++)
+        for (int x = 0; x < BOARD_WIDTH; x++)
         {
-			if( board[i][j] != BORDER )
-			{
-				board[i][j] = board[i][j-1];
-			}
+            board[x][y] = board[x][y-1];
         }
-    }  
+    } 
 }
+//This method checks the lines to see if there is a full line that needs to be deleted
 void checkLines()
 {
-	for (int j = 0; j < BOARD_HEIGHT; j++)
+	for (int y = 0; y < BOARD_HEIGHT; y++)
     {
-        int i = 1;
-		
-        while (i < BOARD_WIDTH)
+        int x = 1;//x starts at 1 because the first line is taken up by the border
+        while (x < BOARD_WIDTH - 1) // negative 1 to avoid checking the right side border
         {
-            if( board[i][j] == 0) break;
-			i++;
+            if (board[x][y] == POS_FREE || board[x][y] == BORDER) //Check each of the positions in the line to see if any are empty or are borders
+			{
+				break;
+			}
+            x++;
         }
- 
-        if (i == BOARD_WIDTH - 1) DeleteLine(j);
+        if (x == BOARD_WIDTH - 1) 
+		{
+			DeleteLine(y);
+		}
     }
 }
 

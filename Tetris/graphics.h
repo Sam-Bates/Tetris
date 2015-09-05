@@ -4,6 +4,13 @@
 #define SCREEN_HEIGHT 720
 #include <string>
 
+
+SDL_Texture* loadTexture( std::string path );
+bool init();
+bool loadMedia();
+void close();
+void drawRect();
+
 //The window we'll be rendering to
 extern SDL_Window* gWindow;
 
@@ -14,12 +21,5 @@ extern SDL_Renderer* gRenderer;
 extern SDL_Texture* blockTexture;
 extern SDL_Texture* borderTexture;
 extern SDL_Texture* pieceTexture;
-//Screen dimension constants
-
-//Loads individual image as texture
-SDL_Texture* loadTexture( std::string path );
-bool init();
-bool loadMedia();
-void close();
 
 #endif
