@@ -34,16 +34,11 @@ void drawBoard()
 		{
 			if( board[i][j] == POS_TAKEN )
 			{
-				//create 2d rectangle to apply texture to, MAGNIFICATION defines the size of the rendered game
-				SDL_Rect a = {i * MAGNIFICATION /*X*/, j * MAGNIFICATION /*Y*/, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
-				//actually tell SDL to render the blockTexture to the screen
-				SDL_RenderCopy( gRenderer, blockTexture, NULL, &a );
+				drawRect(i, j, POS_TAKEN);
 			}
 			else if( board[i][j] == BORDER ) //Same thing as above, expect loading borderTexture instead of the block texture
 			{
-				//The size is 11 so there is no gap between the drawn border blocks
-				SDL_Rect a = {i * MAGNIFICATION /*X*/, j * MAGNIFICATION /*Y*/, MAGNIFICATION + 1/*size*/,MAGNIFICATION + 1/*size*/};
-				SDL_RenderCopy( gRenderer, borderTexture, NULL, &a );
+				drawRect(i, j, BORDER);
 			}
 		}
 	}
@@ -90,6 +85,7 @@ void checkLines()
         if (x == BOARD_WIDTH - 1) 
 		{
 			DeleteLine(y);
+
 		}
     }
 }

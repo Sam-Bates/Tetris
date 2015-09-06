@@ -5,22 +5,23 @@
 #include "board.h"
 #include "pieces.h"
 
-//The window we'll be rendering to
+//The window
 SDL_Window* gWindow;
 
 //The renderer
 SDL_Renderer* gRenderer;
 
-//The two textures
+
 SDL_Texture* blockTexture;
 SDL_Texture* borderTexture;
 SDL_Texture* pieceTexture;
+SDL_Texture* ghostPieceTexture;
+SDL_Texture* loseTexture;
 
 bool init()
 {
 	//Initialization flag
 	bool success = true;
-
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
@@ -78,6 +79,8 @@ bool loadMedia()
 	blockTexture = loadTexture( "texture.png" );
 	borderTexture = loadTexture( "borderTexture.png" );
 	pieceTexture = loadTexture( "pieceTexture.png" );
+	ghostPieceTexture = loadTexture( "ghostPieceTexture.png" );
+	loseTexture = loadTexture( "lose.png" );
 	if( blockTexture == NULL || borderTexture == NULL || pieceTexture == NULL )
 	{
 		std::cout <<  "Failed to load texture image!" << std::endl;
@@ -130,7 +133,19 @@ void close()
 	IMG_Quit();
 	SDL_Quit();
 }
-void drawRect( int i, int j, int pieceType )
+void drawRect( int x, int y, int pieceType )
 {
-	//do this later
+	SDL_Rect rekt = {x * MAGNIFICATION, y * MAGNIFICATION, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
+	if( pieceType == BORDER )
+	{
+		SDL_RenderCopy( gRenderer, borderTexture, NULL, &rekt );
+	}
+	else if( pieceType == POS_TAKEN )
+	{
+		SDL_RenderCopy( gRenderer, pieceTexture, NULL, &rekt );
+	}
+	else
+	{
+		SDL_RenderCopy( gRenderer, ghostPieceTexture, NULL, &rekt );
+	}
 }

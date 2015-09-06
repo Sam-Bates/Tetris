@@ -6,23 +6,16 @@
 #include "graphics.h"
 #include "board.h"
 
+bool gameOver;
 void initGame()
 {
-	currentPiece = rand()%7;
-	nextPiece = rand()%7;
-	currentRotation = rand()%4;
-	nextRotation = rand()%4;
-	//figure out initial postion stuff
-	currentX = (BOARD_WIDTH / 2); // in the middle of the board
-	currentY = -1; // number of blocks down
+	gameOver = false;
+	drawBoard();
+	createNewPiece();
 }
 
 int main( int argc, char* args[] )
 {
-	//make a collided piece save into the board
-	//piece rotations
-	//score
-	//game end
 	srand(time(NULL));
 	initGame();
 	initBoard();
@@ -42,14 +35,12 @@ int main( int argc, char* args[] )
 		}
 		else
 		{	
-			//Main loop flag
-			bool quit = false;
 
 			//Event handler
 			SDL_Event e;
 
 			//While application is running
-			while( !quit )
+			while( !gameOver )
 			{
 				
 				//Handle events on queue
@@ -57,9 +48,9 @@ int main( int argc, char* args[] )
 				{
 
 					//User requests quit
-					if( e.type == SDL_QUIT )
+					if( e.type == SDL_QUIT)
 					{
-						quit = true;
+						gameOver = true;
 					}
 					else if( e.type == SDL_KEYDOWN )
 					{
@@ -69,17 +60,13 @@ int main( int argc, char* args[] )
                         case SDLK_LEFT:
 							movePiece(-1, 0);
 							break;
-
                         case SDLK_RIGHT:
-							//make enum at some point
 							movePiece(1, 0);
 							break;
 						case SDLK_UP:
-							//make enum at some point
 							rotate(1);
 							break;
 						case SDLK_DOWN:
-							//make enum at some point
 							rotate(0);
 							break;
 						case SDLK_SPACE:
@@ -93,16 +80,13 @@ int main( int argc, char* args[] )
 				}
 				drawBoard();
 				drawPiece();
-				
-				
 				SDL_RenderPresent( gRenderer );
 				if( check )
 				{
 					checkLines();
 					check = false;
 				}
-				
-				if( SDL_GetTicks() > startTime + MOVE_DELAY )
+				if( SDL_GetTicks() > startTime + MOVE_DELAY )//this defines the time between each "drop" of the piece
 				{
 					startTime = SDL_GetTicks();
 					if( movePiece(0, 1) )

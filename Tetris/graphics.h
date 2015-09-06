@@ -1,25 +1,27 @@
 #ifndef graphics_h_
 #define graphics_h_
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 700
+#define SCREEN_HEIGHT 700
 #include <string>
 
 
-SDL_Texture* loadTexture( std::string path );
+
 bool init();
 bool loadMedia();
 void close();
-void drawRect();
+void drawRect(int, int, int);
 
-//The window we'll be rendering to
+const int MAGNIFICATION = 32;
+
+SDL_Texture* loadTexture( std::string path );
+
+extern bool gameOver;
 extern SDL_Window* gWindow;
-
-//The renderer
 extern SDL_Renderer* gRenderer;
-
-//The two textures
+extern SDL_Texture* loseTexture;
 extern SDL_Texture* blockTexture;
 extern SDL_Texture* borderTexture;
 extern SDL_Texture* pieceTexture;
+extern SDL_Texture* ghostPieceTexture;
 
 #endif

@@ -30,7 +30,7 @@ bool collision()
     }
 	return false;
 }
-void drawPiece( )
+void drawPiece()
 {
 	for (int i = 0; i < PIECE_BLOCKS; i++)
     {
@@ -38,22 +38,37 @@ void drawPiece( )
         {   
 			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN )
 			{
-				SDL_Rect a = {(i + currentX) * MAGNIFICATION /*X*/, (j + currentY) * MAGNIFICATION /*Y*/, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
-				SDL_RenderCopy( gRenderer, pieceTexture, NULL, &a );
+				drawRect( i + currentX, j + currentY, POS_TAKEN );
 			}
         }
     }
+	//This loops and draws the next piece next to the game board
 	for (int i = 0; i < PIECE_BLOCKS; i++)
     {
         for (int j = 0; j < PIECE_BLOCKS; j++)
         {   
 			if( pieces[nextPiece][nextRotation][i][j] == POS_TAKEN )
 			{
-				SDL_Rect a = {(i + BOARD_WIDTH) * MAGNIFICATION /*X*/, (j) * MAGNIFICATION /*Y*/, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
-				SDL_RenderCopy( gRenderer, pieceTexture, NULL, &a );
+				drawRect( i + BOARD_WIDTH, j, POS_TAKEN );
 			}
         }
     }
+	//int ghostCurrentY = currentY;
+	//while( !collision() )
+	//{
+	//	ghostCurrentY++;
+	//}
+	//ghostCurrentY--;
+	//for (int i = 0; i < PIECE_BLOCKS; i++)
+ //   {
+ //       for (int j = 0; j < PIECE_BLOCKS; j++)
+ //       {   
+	//		if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN )
+	//		{
+	//			drawRect( i + currentX, j + ghostCurrentY, -1 );
+	//		}
+ //       }
+ //   }
 }
 
 //This method moves the piece and calls the collision method, if collision is true, revert the movement
@@ -91,7 +106,11 @@ void createNewPiece()
 	nextRotation = rand()%4;
 	//figure out initial postion stuff
 	currentX = (BOARD_WIDTH / 2) - 2; // in the middle of the board
-	currentY = -1; // number of blocks down
+	currentY = 0; // number of blocks down
+	if( collision() )
+	{
+		gameOver = true;//This is done badly but I couldn't think of a better way
+	}
 }
 
 void rotate(int direction)

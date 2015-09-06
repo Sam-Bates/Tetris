@@ -10,14 +10,6 @@ void swapPiece();
 
 const int PIECE_BLOCKS = 5; // in blocks
 const int MOVE_DELAY = 500; // the time between each movement
-const int SQUARE_PIECE = 0;
-const int STRAIGHT_PIECE = 1;
-const int L_PIECE = 2;
-const int L_MIRRORED_PIECE = 3;
-const int N_PIECE = 4;
-const int N_MIRRORED_PIECE = 5;
-const int T_PIECE = 6;
-const int T_PIECE_MIRRORED = 7;
 extern int currentPiece; // the current in play piece
 extern int nextPiece;
 extern int currentY;
@@ -25,7 +17,18 @@ extern int currentX;
 extern int currentRotation;
 extern int nextRotation;
 
-
+/*May have to remove*/
+enum pieceTypes
+{
+	SQUARE_PIECE,
+	STRAIGHT_PIECE,
+	L_PIECE,
+	L_MIRRORED_PIECE,
+	N_PIECE,
+	N_MIRRORED_PIECE,
+	T_PIECE,
+	T_PIECE_MIRRORED
+};
 const int pieces [7 /*kind */ ][4 /* rotation */ ][5][5] =
 {
 // Square
@@ -250,58 +253,5 @@ const int pieces [7 /*kind */ ][4 /* rotation */ ][5][5] =
     {0, 0, 0, 0, 0}
     }
    }
-};
-
-const int initialPlace  [7 /*kind */ ][4 /* r2otation */ ][2 /* position */] =
-{
-/* Square */
-  {
-    {-2, -3}, 
-    {-2, -3},
-    {-2, -3},
-    {-2, -3}
-   },
-/* I */
-  {
-    {-2, -2},
-    {-2, -3},
-    {-2, -2},
-    {-2, -3}
-   },
-/* L */
-  {
-    {-2, -3},
-    {-2, -3},
-    {-2, -3},
-    {-2, -2}
-   },
-/* L mirrored */
-  {
-    {-2, -3},
-    {-2, -2},
-    {-2, -3},
-    {-2, -3}
-   },
-/* N */
-  {
-    {-2, -3},
-    {-2, -3},
-    {-2, -3},
-    {-2, -2}
-   },
-/* N mirrored */
-  {
-    {-2, -3},
-    {-2, -3},
-    {-2, -3},
-    {-2, -2}
-   },
-/* T */
-  {
-    {-2, -3},
-    {-2, -3},
-    {-2, -3},
-    {-2, -2}
-   },
 };
 #endif

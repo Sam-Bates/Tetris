@@ -6,7 +6,7 @@ const int BOARD_HEIGHT = 22; //in blocks
 const int POS_FREE = 0; 
 const int POS_TAKEN = 1;
 const int BORDER = 2;
-const int MAGNIFICATION = 20;
+
 
 extern int board[BOARD_WIDTH][BOARD_HEIGHT];
 
