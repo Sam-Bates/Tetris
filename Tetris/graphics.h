@@ -1,7 +1,7 @@
 #ifndef graphics_h_
 #define graphics_h_
-#define SCREEN_WIDTH 700
-#define SCREEN_HEIGHT 700
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
 #include <string>
 
 

@@ -11,7 +11,7 @@ int currentX;
 int currentRotation;
 int nextRotation;
 
-bool collision()
+bool collision(int y = currentY)
 {
 	//create temp piece arrray that holds the layout of the current piece and rotation
 	//check if the temp piece is 1 && if the board location is 0, then draw a block there
@@ -21,8 +21,8 @@ bool collision()
     {
         for (int j = 0; j < PIECE_BLOCKS; j++)
         {   
-			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN && ((board[i + currentX][j + currentY] == POS_TAKEN)
-				|| (board[i + currentX][j + currentY] == BORDER)) )
+			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN && ((board[i + currentX][j + y] == POS_TAKEN)
+				|| (board[i + currentX][j + y] == BORDER)) )
 			{
 				return true;
 			}
@@ -53,22 +53,23 @@ void drawPiece()
 			}
         }
     }
-	//int ghostCurrentY = currentY;
-	//while( !collision() )
-	//{
-	//	ghostCurrentY++;
-	//}
-	//ghostCurrentY--;
-	//for (int i = 0; i < PIECE_BLOCKS; i++)
- //   {
- //       for (int j = 0; j < PIECE_BLOCKS; j++)
- //       {   
-	//		if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN )
-	//		{
-	//			drawRect( i + currentX, j + ghostCurrentY, -1 );
-	//		}
- //       }
- //   }
+	int ghostCurrentY = currentY;
+	while( !collision(ghostCurrentY) )
+	{
+
+		ghostCurrentY++;
+	}
+	ghostCurrentY--;
+	for (int i = 0; i < PIECE_BLOCKS; i++)
+    {
+        for (int j = 0; j < PIECE_BLOCKS; j++)
+        {   
+			if( pieces[currentPiece][currentRotation][i][j] == POS_TAKEN )
+			{
+				drawRect( i + currentX, j + ghostCurrentY, -1 );
+			}
+        }
+    }
 }
 
 //This method moves the piece and calls the collision method, if collision is true, revert the movement
@@ -115,31 +116,12 @@ void createNewPiece()
 
 void rotate(int direction)
 {
-	if( direction == 1 )
+	int oldRotation=currentRotation;
+
+	currentRotation=(currentRotation+direction+4)%4;// mod by 4 to cahnge rotation, add 4 in order to handle -1 case
+	if ( collision() )// check for collision and reverse the rotate if true
 	{
-		int temp = currentRotation;
-		currentRotation++;
-		if( currentRotation > 3 /*magic to change*/ )
-		{
-			currentRotation = 0;
-		}
-		if( collision() )
-		{
-			currentRotation = temp;
-		}
-	}
-	else 
-	{
-		int temp = currentRotation;
-		currentRotation--;
-		if( currentRotation < 0 )
-		{
-			currentRotation = 3;
-		}
-		if( collision() )
-		{
-			currentRotation = temp;
-		}
+		currentRotation=oldRotation;
 	}
 }
 void swapPiece()

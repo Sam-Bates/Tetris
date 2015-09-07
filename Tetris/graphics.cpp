@@ -135,17 +135,17 @@ void close()
 }
 void drawRect( int x, int y, int pieceType )
 {
-	SDL_Rect rekt = {x * MAGNIFICATION, y * MAGNIFICATION, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
+	SDL_Rect a = {x * MAGNIFICATION, y * MAGNIFICATION, MAGNIFICATION/*size*/,MAGNIFICATION/*size*/};
 	if( pieceType == BORDER )
 	{
-		SDL_RenderCopy( gRenderer, borderTexture, NULL, &rekt );
+		SDL_RenderCopy( gRenderer, borderTexture, NULL, &a );
 	}
 	else if( pieceType == POS_TAKEN )
 	{
-		SDL_RenderCopy( gRenderer, pieceTexture, NULL, &rekt );
+		SDL_RenderCopy( gRenderer, pieceTexture, NULL, &a );
 	}
-	else
+	else if ( pieceType == -1 )
 	{
-		SDL_RenderCopy( gRenderer, ghostPieceTexture, NULL, &rekt );
+		SDL_RenderCopy( gRenderer, ghostPieceTexture, NULL, &a );
 	}
 }

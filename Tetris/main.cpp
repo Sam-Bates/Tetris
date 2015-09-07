@@ -67,7 +67,7 @@ int main( int argc, char* args[] )
 							rotate(1);
 							break;
 						case SDLK_DOWN:
-							rotate(0);
+							rotate(-1);
 							break;
 						case SDLK_SPACE:
 							slam();
